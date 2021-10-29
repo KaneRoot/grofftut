@@ -1,4 +1,4 @@
-SRC ?= main
+SRC ?= grofftut
 ODIR ?= /tmp/
 export ODIR SRC
 
