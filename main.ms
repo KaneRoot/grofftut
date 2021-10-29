@@ -5,6 +5,59 @@
 .so header.ms
 .TWO_COLUMNS
 .NH   \" new section
+Before we start
+.PP
+.QUESTION "Why a PDF instead of a website?"
+Documentation is about providing information in a comprehensive manner.
+There are different ways, roughly summarised in the following as
+.I website
+and
+.I book
+(maybe as a PDF document and not a physical book, but you get the idea).
+
+.TS
+allbox tab(:);
+c | c
+c | lew(2.8i).
+Doc. : Perks
+Web :T{
+Quick and easy to create and share,
+very small contributions are shared,
+easily updated
+T}
+Book :T{
+All related informations in a single place,
+collectible,
+very little updates
+T}
+.TE
+
+From the constraint of having to deliver a final document that cannot be updated, comes one of the biggest perks of books.
+Authors are forced to write to the best of their abilities.
+
+.TS
+allbox tab(:);
+c | c
+c | lew(2.8i).
+Doc. : Flaws
+Web :T{
+All differents,
+perishable,
+non easily collectible for backups,
+scattered information (articles),
+often not pedagogical or with little effort put in explanations,
+hard to follow updates
+T}
+Book :T{
+Way harder to write
+T}
+.TE
+
+Books can be written using a lot of different tools, including \fILaTeX\f[] or WYSIWYG editors such as \fILibreoffice\f[].
+None are simpler or withstood the test of time better than troff.
+Troff still works almost as its debuts in 1972, and as of today, it produces high quality documents with little effort or complexity.
+
+.NH   \" new section
 Sections and paragraphs
 .PP  \" new paragraph (with indentation on first line)
 Some indented paragraph.
@@ -148,6 +201,27 @@ points
  .BULLET
  points
  .ENDBULLET
+.METAINFO2
+
+.HORIZONTALLINE
+
+Numbered lists
+.ENUM
+Orange
+.ENUM
+Apple
+.ENUM
+Pear
+.ENDENUM
+
+.METAINFO1
+ .ENUM
+ Orange
+ .ENUM
+ Apple
+ .ENUM
+ Pear
+ .ENDENUM
 .METAINFO2
 
 .NH
@@ -392,21 +466,26 @@ Only PDF can be included, so images need to be converted beforehand.
  .PDFPIC -R "./are-you.pdf" 3.5
 .METAINFO2
 .
-.nr figurespace 17
+.nr figurespace 15
 .sp \n[figurespace]
-.PDFPIC -R "./are-you.pdf" 3.5
-.sp \n[figurespace]
+.PDFPIC -R "./are-you.pdf" 3.2
+.sv \n[figurespace]
 
 .METAINFO1
 Note: for now, on my system, I need a hack.
 The included PDF has no length, despite having installed the poppler-utils package.
-So, I added spaces by hand.
+So, I added vertical spaces by hand (with
+.I sp
+and
+.I sv
+requests).
+The length is an empirical constant.
 I'll try to search for a better way, someday.
 .METAINFO2
 
-.METAINFO1
- .nr figurespace 17
- .sp \\n[figurespace]
- .PDFPIC -R "./are-you.pdf" 3.5
- .sp \\n[figurespace]
-.METAINFO2
+.NH
+Final words
+.PP
+It is customary in old tools such as troff to read the source code and hack your way.
+Once you're familiar with the basics, if you need something that isn't in the official troff documentation, don't hesitate to read provided macros (mines, but also ms macros as well, for instance).
+You'll quickly learn a lot.

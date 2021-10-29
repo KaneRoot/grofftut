@@ -5,4 +5,4 @@ export ODIR SRC
 include Makefile.in
 
 upload:
-	scp $(SRC).pdf tacos:/var/www/htdocs/t.karchnu.fr/doc/
+	scp $(ODIR)/$(SRC).pdf tacos:/var/www/htdocs/t.karchnu.fr/doc/grofftut.pdf
