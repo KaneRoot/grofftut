@@ -185,42 +185,30 @@ These horizontal lines are produced by
 .HORIZONTALLINE
 
 Listing stuff
-.BULLET
-with
-.BULLET
-bullet
-.BULLET
-points
+.BULLET with
+.BULLET bullet
+.BULLET points
 .ENDBULLET
 
 .METAINFO1
- .BULLET
- with
- .BULLET
- bullet
- .BULLET
- points
+ .BULLET with
+ .BULLET bullet
+ .BULLET points
  .ENDBULLET
 .METAINFO2
 
 .HORIZONTALLINE
 
 Numbered lists
-.ENUM
-Orange
-.ENUM
-Apple
-.ENUM
-Pear
+.ENUM Orange
+.ENUM Apple
+.ENUM Pear
 .ENDENUM
 
 .METAINFO1
- .ENUM
- Orange
- .ENUM
- Apple
- .ENUM
- Pear
+ .ENUM Orange
+ .ENUM Apple
+ .ENUM Pear
  .ENDENUM
 .METAINFO2
 

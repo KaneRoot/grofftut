@@ -37,6 +37,7 @@ accumulate
 .
 .de BULLET         \" Bullet points
 .IP \(bu 2
+\\$*
 ..
 .de ENDBULLET
 .in -2   \" indent
@@ -45,6 +46,7 @@ accumulate
 .de ENUM           \" Numbered list
 .nr LIST_NUMBER +1
 .IP \\n[LIST_NUMBER] 2
+\\$*
 ..
 .de ENDENUM
 .nr LIST_NUMBER 0
