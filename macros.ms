@@ -1,7 +1,7 @@
 .\" .RP = report document
 .nr PO 0.5i   \" page offset default 1i
 .nr LL 7.5i   \" line length default 6i
-.nr FM 0.5i   \" page foot margin default 1i
+.nr FM 0.8i   \" page foot margin default 1i
 .nr DI 0
 .nr FF 3   \" footnotes' type: numbered, with point, indented
 .
@@ -35,9 +35,12 @@ accumulate
 .vs 11p
 ..
 .
+.\" BULLET and ENUM => do not add space when no parameter are provided
 .de BULLET         \" Bullet points
 .IP \(bu 2
-\\$*
+.ie '\\$1'' \
+.
+.el         \\$*
 ..
 .de ENDBULLET
 .in -2   \" indent
@@ -46,7 +49,9 @@ accumulate
 .de ENUM           \" Numbered list
 .nr LIST_NUMBER +1
 .IP \\n[LIST_NUMBER] 2
-\\$*
+.ie '\\$1'' \
+.
+.el         \\$*
 ..
 .de ENDENUM
 .nr LIST_NUMBER 0
@@ -122,7 +127,7 @@ accumulate
 ..
 .
 .
-.de PRETTY_PERCENTAGE
+.de FRAC
 \v'-.7m\s[\\n(.s*6u/10u]+.7m'\\$1\v'-.7m\s0+.7m'\
 \(f/\s[\\n(.s*6u/10u]\\$2\s0
 ..
@@ -208,4 +213,96 @@ To be defined or to finish.
 .de ARROW
 .br
 \(->\h'5p' \\$*
+..
+.ds CURRENT_DATE \\n(dy/\\n(mo/\\n[year]
+.ds WEBSITE      https://t.karchnu.fr/doc
+.ds EMAIL        karchnu@karchnu.fr
+.de INFORMATIONS
+Check out for newer versions:
+.ft CW
+.ps 8
+\h'2p' \\$1
+.ps
+.ft
+.br
+And if you have questions:
+.ft CW
+\h'13p' \\$2
+.ft
+.\" .DE
+
+.LP
+Lastly compiled the
+.SHINE \*[CURRENT_DATE]
+(day/month/year, you know, like in any sane civilization).
+..
+.de INFORMATIONS_FR
+.LP
+Nouvelles versions :
+.ft CW
+.ps 8
+\h'2p' \\$1
+.ps
+.ft
+.br
+Questions :
+.ft CW
+\h'36p' \\$2
+.ft
+.\" .DE
+
+.LP
+Compilé pour la dernière fois le
+.SHINE \*[CURRENT_DATE]
+..
+.
+.\" RENAMING REQUESTS
+.
+.de SECTION
+.NH
+\\$*
+..
+.de SUBSECTION
+.NH 2
+\\$*
+..
+.de SECTION_NO_NUMBER
+.SH
+\\$*
+..
+.de SUBSECTION_NO_NUMBER
+.SH 2
+\\$*
+..
+.de PARAGRAPH_INDENTED
+.PP
+..
+.de PARAGRAPH_UNINDENTED
+.LP
+..
+.de NO_ABSTRACT
+.AB no
+..
+.de ABSTRACT1
+.AB
+..
+.de ABSTRACT2
+.AE
+..
+.de TITLE
+.TL
+\\$*
+..
+.de AUTHOR
+.AU
+.ie '\\$1'' \
+.
+.el \
+\\$*
+..
+.de FOOTNOTE1
+.FS
+..
+.de FOOTNOTE2
+.FE
 ..

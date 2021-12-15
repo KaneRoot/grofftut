@@ -53,7 +53,7 @@ REFER = refer $(REFER_OPTS)
 # -U     => unsafe (because of PDF inclusion)
 # -Tpdf  => output device is PDF
 # -mspdf => include PDF (so, images converted in PDF) in the document
-GROFF_OPTS ?= -ms -t -Tpdf -U -mspdf -mpdfmark
+GROFF_OPTS ?= -ms -t -Tpdf -U -mspdf -mpdfmark -M ~/
 GROFF = groff $(GROFF_OPTS)
 
 $(SRC).pdf:
