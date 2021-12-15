@@ -154,11 +154,11 @@ Seriously, these macros are awesome guys.
 
 (Temporary name for the following macro)
 .ft CW
- .PRETTY_PERCENTAGE 5.5 20
+ .FRAC 5.5 20
 .ft
 .br
 Produces:
-.PRETTY_PERCENTAGE 5.5 20
+.FRAC 5.5 20
 
 .HORIZONTALLINE
 
@@ -320,12 +320,12 @@ A complete nighmare when talking about mineral extraction costs.
 .\" space_hdr = 0.8
 .\" space_step = 0.3
 .\" space_step_small = 0.2
-.\" 
+.\"
 .\" .ps 16
 .\" A: "A" ; move space_between_machines
 .\" R: "R" ; move space_between_machines
 .\" B: "B"
-.\" 
+.\"
 .\" .ps 12
 .\" move to A + (0, -space_hdr)
 .\" "start" rjust; move down space_lines
@@ -338,8 +338,8 @@ A complete nighmare when talking about mineral extraction costs.
 .\" move down space_step_small
 .\" DAD_SEC_A: line left ; move right; move right space_between_machines; move down space_step
 .\" DAD_SEC_B: line right ; move to DAD_SEC_A + (0, -space_step)
-.\" 
-.\" 
+.\"
+.\"
 .\" .ps 8
 .\" line -> from START to DAD_SOL "DAD: Neighbor Sollicitation" "" ""
 .\" line -> from RS_A to RS_B "Router Sollicitation" "" ""
@@ -421,6 +421,33 @@ T}
  T}
  .TE
 .METAINFO2
+
+.NH
+Tables with hdtbl
+.PP
+.mso hdtbl.tmac
+.\"
+.ds t*bgc  white\" background color
+.\".ds t*fgc  black  \" foreground color
+.\".nr t*cpd  0.1n   \"  cell padding
+.ds t*bc   pink2\"  border color
+.
+.TBL cols=3 width='10% 45%'
+.  CPTN val=b This is a fine table. This is a fine table. This is a fine table. This is a fine table. This is a fine table. This is a fine table.
+.  TR
+.    TD fst=I first cell
+.    TD fgc=green4 bgc= 1*2
+.    TD hal=c val=m rowspan=2 hello
+.  TR .TD 2*1 ".TD bgc=pink" 2*2
+.  TR height=0.5i .TD 3*1 ".TD colspan=2 hal=r fst=B" Last cell
+.ETB
+
+.TBL cols=3 width='50% 25%'
+.  TR
+.    TD fst=I first cell, long message
+.    TD fgc=green4 bgc= second
+.    TD bgc= 3
+.ETB
 
 .NH
 Some references
