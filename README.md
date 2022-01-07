@@ -18,6 +18,22 @@ Furthermore, this repository includes:
 - source code highlight (via the `source-highlight` software and a script)
 - A makefile to automatically call every tool in right order; just type `make`!
 
+# How to compile
+
+You need `groff` installed on your system, and `source-highlight` (or remove the right line in the makefile).
+
+Then:
+```sh
+make
+```
+
+If you have `entr` on your system, you can also recompile your file each time you modify it:
+```sh
+make serve
+```
+
+Read the makefile for more options.
+
 # Preview
 
 https://t.karchnu.fr/doc/grofftut.pdf
