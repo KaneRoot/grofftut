@@ -20,5 +20,6 @@ https://git.baguette.netlib.re/karchnu/groff-template
 .LP
 Lastly compiled the
 \h'5p' 
-.SHINE \n(dy/\n(mo/2021 \" is \n(yr broken?
+.ds CURRENT_DATE \\n(dy/\\n(mo/\\n[year]
+.SHINE \*[CURRENT_DATE]
 .AE
