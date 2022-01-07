@@ -131,12 +131,20 @@ accumulate
 \v'-.7m\s[\\n(.s*6u/10u]+.7m'\\$1\v'-.7m\s0+.7m'\
 \(f/\s[\\n(.s*6u/10u]\\$2\s0
 ..
+.de FOOTNOTE_TO_COLUMN_WIDTH
+.nr pg@fn-colw \\n[pg@colw]   \" footnotes' column width
+..
+.de SINGLE_COLUMN
+.1C
+.FOOTNOTE_TO_COLUMN_WIDTH
+..
 .de TWO_COLUMNS
 .2C
-.nr pg@fn-colw \\n[pg@colw]   \" footnotes' column width
+.FOOTNOTE_TO_COLUMN_WIDTH
 ..
 .de HORIZONTALLINE
 \l'15'
+.FOOTNOTE_TO_COLUMN_WIDTH
 ..
 .de SMALLFONT
 .ps 8
@@ -266,6 +274,14 @@ Compilé pour la dernière fois le
 .NH 2
 \\$*
 ..
+.de SUBSUBSECTION
+.NH 3
+\\$*
+..
+.de SUBSUBSUBSECTION
+.NH 4
+\\$*
+..
 .de SECTION_NO_NUMBER
 .SH
 \\$*
@@ -305,4 +321,12 @@ Compilé pour la dernière fois le
 ..
 .de FOOTNOTE2
 .FE
+..
+.de VOCABULARY1
+.KS
+.BULLET
+.UL "\\$*" :
+..
+.de VOCABULARY2
+.KE
 ..
