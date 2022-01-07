@@ -482,9 +482,12 @@ Only PDF can be included, so images need to be converted beforehand.
 .METAINFO2
 .
 .nr figurespace 15
-.sp \n[figurespace]
+.\" KS and KE: keep different stuff together (no page break)
+.KS
 .PDFPIC -R "./are-you.pdf" 3.2
-.sv \n[figurespace]
+.sp \n[figurespace]
+.KE
+.\".sv \n[figurespace]
 
 .METAINFO1
 Note: for now, on my system, I need a hack.
