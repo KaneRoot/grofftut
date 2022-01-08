@@ -47,3 +47,13 @@ Some macros exist to do it properly, but it still is to include in custom macros
 
 Browser preview is ugly as fuck.
 It may have something to do with font embedding, I have to investigate, but right now you just can't have a nice preview on a browser.
+
+# TODO
+
+Besides fixing minor problems (image inclusion, browser view), other tools should be tested:
+
+- [neatroff][neatroff]: roff but with a modern implementation
+- [SILE][SILE]: not roff, but allows way more complex layouts while still remaining simple
+
+[neatroff]: https://github.com/aligrudi/neatroff
+[SILE]: https://sile-typesetter.org/
