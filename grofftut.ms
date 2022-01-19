@@ -152,11 +152,10 @@ Seriously, these macros are awesome guys.
 
 .HORIZONTALLINE
 
-(Temporary name for the following macro)
 .ft CW
  .FRAC 5.5 20
 .ft
-.br
+
 Produces:
 .FRAC 5.5 20
 
