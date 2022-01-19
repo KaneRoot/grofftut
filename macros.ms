@@ -114,13 +114,13 @@ accumulate
 .\" r     = move upward
 .\" Z D t = drawing thickness
 .\" L     = draw the line
-\r
+\r\
 \Z'\D't 1p''\
-\L'|\\nCu' \" draw line (\r moves upward, \L draw the line, ...)
-.gcolor black     \" remove previous color
-.sp -2       \" get two lines back
+\L'|\\nCu'     \" draw line
+.gcolor black  \" remove previous color
+.sp -2         \" get two lines back
 \Z'\D't 1''    \" get the previous drawing thickness back
-.KE          \" end of the keep
+.KE            \" end of the keep
 ..
 .
 .de NAMECITATION
