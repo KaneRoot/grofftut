@@ -382,15 +382,10 @@ And this can be set off, with "delim off".
 UTF-8
 .PP
 UTF-8 is wonderful.
-Unfortunately, this wasn't implemented in troff, since it comes from 1972, and neither in the later implementation
+This wasn't implemented in troff, since it comes from 1972, and neither in the later implementation
 .B groff .
-So, I wrote the \f[CW]./bin/utf8-to-ms.sh\f[] filter to automatically convert an extensive list of accents, ligatures, and text markers in their equivalent ms macros.
-Therefore, one can write in UTF-8 (or at least a good chunk of it) in the input file\*[*].
-.FS
-All characters cannot be converted so easily.
-Some of them are used in troff, such as the arobase, the backslash, etc.
-However, my script is a good enough solution for me to write in my mother tongue without any problem.
-.FE
+But, you can write UTF-8 characters anyway, thanks to the troff preprocessor
+.B preconv .
 
 Examples (all written in UTF-8 in the troff file):
 .br
@@ -432,7 +427,7 @@ Tables with hdtbl
 .\".nr t*cpd  0.1n   \"  cell padding
 .ds t*bc   pink2\"  border color
 .
-.TBL cols=3 width='10% 45%'
+.TBL cols=3 width='20% 35%'
 .  CPTN val=b This is a fine table. This is a fine table. This is a fine table. This is a fine table. This is a fine table. This is a fine table.
 .  TR
 .    TD fst=I first cell
