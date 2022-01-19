@@ -17,11 +17,36 @@ accumulate
 .defcolor darkgreen rgb 0.1 0.5 0.2
 .defcolor darkblue  rgb 0.3 0.3 0.7
 .defcolor darkred   rgb 0.7 0.3 0.3
+.defcolor black     rgb 0 0 0
 .
+. \" with semantic
 .defcolor citation       rgb 0.4 0.4 0.4
 .defcolor citationbar    rgb 0.3 0.3 0.7
 .defcolor explanation    rgb 0.7 0.4 0.4
 .defcolor explanationbar rgb 0.8 0.3 0.3
+.
+.defcolor specialcolor_type        rgb 0.6 0.3 0.5
+.defcolor specialcolor_constructor rgb 0.1 0.5 0.2
+.defcolor specialcolor_module      rgb 0.1 0.5 0.2
+.defcolor specialcolor_function    rgb 0.4 0.4 0.7
+.defcolor specialcolor_question    rgb 0.0 0.0 0.7
+.defcolor specialcolor_shine       rgb 0.3 0.3 0.7
+.
+. \" SIZES
+.nr specialsize_type        8
+.nr specialsize_constructor 8
+.nr specialsize_module      8
+.nr specialsize_function    8
+.nr specialsize_question    10   \" Current point size, no change.
+.nr specialsize_shine       11
+.
+. \" FONTS
+.ds specialfont_type        CW
+.ds specialfont_constructor CW
+.ds specialfont_module      CW
+.ds specialfont_function    I
+.ds specialfont_question    I
+.ds specialfont_shine       B
 .
 .
 .de BELLOWEXPLANATION1
@@ -76,16 +101,25 @@ accumulate
 .in +1       \" indent a bit
 .gcolor citation
 ..
+.ig
+    The CITATION2 macro closes the quote then draws a line
+    from current line to the start of the quote.
+..
 .de CITATION2
 .mk D        \" set second marker to come back here
 .ft          \" back to previous font
 .in -1       \" remove indent
 .gcolor      \" remove previous color
 .gcolor citationbar
-\r\L'|\\nCu' \" draw line (\r moves upward, \L draw the line, ...)
-.sp '|\\nDu' \" return to the second marker
-.gcolor      \" remove previous color
+.\" r     = move upward
+.\" Z D t = drawing thickness
+.\" L     = draw the line
+\r
+\Z'\D't 1p''\
+\L'|\\nCu' \" draw line (\r moves upward, \L draw the line, ...)
+.gcolor black     \" remove previous color
 .sp -2       \" get two lines back
+\Z'\D't 1''    \" get the previous drawing thickness back
 .KE          \" end of the keep
 ..
 .
@@ -146,6 +180,28 @@ accumulate
 \l'15'
 .FOOTNOTE_TO_COLUMN_WIDTH
 ..
+.
+. \" Fonts and colors.
+.
+.de SPECIAL_WORDS
+.nr current_size \\n[.s]  \" Current point size.
+.gcolor specialcolor_\\*[semantictoken]
+.
+.if !((\\n[current_size] == \\n[specialsize_\\*[semantictoken]]) \
+.ps \\n[specialsize_\\*[semantictoken]]
+.
+.ie '\\$2'' \{\
+\f[\\*[specialfont_\\*[semantictoken]]]\\$1\f[]
+.  ps \\n[current_size]
+.  gcolor black      \" FIXME: should be the previous color
+\}
+.el \{\
+\f[\\*[specialfont_\\*[semantictoken]]]\\$1\f[]\c
+.  ps \\n[current_size]
+.  gcolor black      \" FIXME: should be the previous color
+\\$2
+\}
+..
 .de SMALLFONT
 .ps 8
 .vs 9p
@@ -161,57 +217,43 @@ accumulate
 .b2
 ..
 .de COMMANDNAME
-.I "\\$1"
-..
-.de FUNCTION
 .I "\\$1" "\\$2"
 ..
-.de TYPE
-.gcolor darkgreen
-.ps 8
-.ft CW
-\\$1
-.ft R
+.de FUNCTION
+.gcolor color_function
+\f[CW]\\$1\f[]\c
 .gcolor
-.ps
+\\$2
+..
+.de TYPE
+.ds semantictoken type
+.SPECIAL_WORDS "\\$1" "\\$2"
 ..
 .de TYPECLASS
 .I "\\$1" "\\$2"
 ..
 .de OPERATOR
-.I "\\$1" "\\$2"
+\f[CW]\\$1\f[]\\$2
 ..
 .de QUESTION
-.I "\\$1" "\\$2"
+.ds semantictoken question
+.SPECIAL_WORDS "\\$1" "\\$2"
 \h'5p'
 ..
 .de CONSTRUCTOR
-.gcolor darkred
-.ps 8
-.ft CW
-\\$1
-.ft R
-.gcolor
-.ps
+.ds semantictoken constructor
+.SPECIAL_WORDS "\\$1" "\\$2"
 ..
 .de MODULE
-.gcolor darkblue
-.ps 8
-.ft CW
-\\$1
-.ft R
-.gcolor
-.ps
+.ds semantictoken module
+.SPECIAL_WORDS "\\$1" "\\$2"
 ..
 .de SHINE
-.gcolor darkblue
-.ft B
-\\$1
-.ft R
-.gcolor
+.ds semantictoken shine
+.SPECIAL_WORDS "\\$1" "\\$2"
 ..
 .de MODULEX
-.MODULE "\\$1,"
+.MODULE \\$1 ,
 ..
 .de TBD
 .ft B
@@ -268,27 +310,50 @@ Compilé pour la dernière fois le
 .
 .de SECTION
 .NH
+.ps +3
+.fam H   \" helvetica family
 \\$*
+.fam     \" back to previous font family
+.ps
+.PARAGRAPH_INDENTED
 ..
 .de SUBSECTION
 .NH 2
+.ps +1
+.fam H   \" helvetica family
 \\$*
+.fam     \" back to previous font family
+.ps
+.PARAGRAPH_INDENTED
 ..
 .de SUBSUBSECTION
 .NH 3
+.fam H   \" helvetica family
 \\$*
+.fam     \" back to previous font family
+.ps
+.PARAGRAPH_INDENTED
 ..
 .de SUBSUBSUBSECTION
 .NH 4
+.fam H   \" helvetica family
 \\$*
+.fam     \" back to previous font family
+.PARAGRAPH_INDENTED
 ..
 .de SECTION_NO_NUMBER
 .SH
+.fam H   \" helvetica family
 \\$*
+.fam     \" back to previous font family
+.PARAGRAPH_INDENTED
 ..
 .de SUBSECTION_NO_NUMBER
 .SH 2
+.fam H   \" helvetica family
 \\$*
+.fam     \" back to previous font family
+.PARAGRAPH_INDENTED
 ..
 .de PARAGRAPH_INDENTED
 .PP
@@ -330,3 +395,32 @@ Compilé pour la dernière fois le
 .de VOCABULARY2
 .KE
 ..
+
+
+.\".nr G 0 1 \" numéro des notes
+.\".de NOTE1
+.\".\" macro NOTE1 commence les notes
+.\"(\\n+G)
+.\".   ev 1 \" ouvre un environnement dédié aux notes
+.\".   br \" casse le flux
+.\".   da print \" divertit le flux vers print
+.\".   sp \" espace
+.\"\\nx)
+.\"..
+.\".de NOTE2
+.\".\" macro NOTE2 ferme les notes
+.\".   br \" casse le flux
+.\".   di \" ferme la diversion
+.\".   ev \" sort de l'environnement
+.\"..
+.\".de end
+.\".\" macro appellée à la fin du document
+.\".   br
+.\".   ev 1 \" en retourne dans l'environnement des notes
+.\".   print \" execute le contenu de la diversion
+.\".   br
+.\".   ev
+.\".   pl \\n(nlu \" ajuste la taille de la page au nombre de lignes
+.\"..
+.\".\" définit la macro .end comme macro de fin de document:
+.\".\" .em end
