@@ -8,8 +8,6 @@ ALLSRC = $(shell find . -name "*.ms")
 SOELIM_OPTS ?=
 SOELIM = soelim $(SOELIM_OPTS)
 
-SPECHAR = ./bin/utf8-to-ms.sh
-
 PRECONV_OPTS ?= -e utf-8
 PRECONV = preconv $(PRECONV_OPTS)
 
@@ -64,9 +62,7 @@ GROFF_OPTS ?= -ms -t -Tpdf -U -mspdf -mpdfmark -M ./bin -P -e
 GROFF = groff $(GROFF_OPTS)
 
 $(SRC).pdf:
-	cat $(SRC).ms |\
-		$(SOELIM) |\
-		$(SPECHAR) |\
+	$(SOELIM) < $(SRC).ms |\
 		$(PRECONV) |\
 		$(EQN) |\
 		$(GHIGHLIGHT) |\
