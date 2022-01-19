@@ -55,7 +55,7 @@ T}
 
 Books can be written using a lot of different tools, including \fILaTeX\f[] or WYSIWYG editors such as \fILibreoffice\f[].
 None are simpler or withstood the test of time better than troff.
-Troff still works almost as its debuts in 1972, and as of today, it produces high quality documents with little effort or complexity.
+Troff still works almost as its debuts in 1970, and as of today, it produces high quality documents with little effort or complexity.
 
 .NH   \" new section
 Sections and paragraphs
