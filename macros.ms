@@ -395,32 +395,3 @@ Compilé pour la dernière fois le
 .de VOCABULARY2
 .KE
 ..
-
-
-.\".nr G 0 1 \" numéro des notes
-.\".de NOTE1
-.\".\" macro NOTE1 commence les notes
-.\"(\\n+G)
-.\".   ev 1 \" ouvre un environnement dédié aux notes
-.\".   br \" casse le flux
-.\".   da print \" divertit le flux vers print
-.\".   sp \" espace
-.\"\\nx)
-.\"..
-.\".de NOTE2
-.\".\" macro NOTE2 ferme les notes
-.\".   br \" casse le flux
-.\".   di \" ferme la diversion
-.\".   ev \" sort de l'environnement
-.\"..
-.\".de end
-.\".\" macro appellée à la fin du document
-.\".   br
-.\".   ev 1 \" en retourne dans l'environnement des notes
-.\".   print \" execute le contenu de la diversion
-.\".   br
-.\".   ev
-.\".   pl \\n(nlu \" ajuste la taille de la page au nombre de lignes
-.\"..
-.\".\" définit la macro .end comme macro de fin de document:
-.\".\" .em end
