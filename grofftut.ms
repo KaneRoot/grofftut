@@ -262,9 +262,144 @@ This is written in the code this way:
  .PE
 .METAINFO2
 
+.SECTION_NO_NUMBER Read the source code for the next figures.
+Both figures have very few lines of code.
+The source code can be read without prior knowledge of
+.B pic ,
+it's almost plain English!
+
+.PS
+reset
+
+.\" Radius for different circles.
+rad_large_circle = 0.6
+rad_empty_space  = 0.5
+rad_light_source = 0.3
+rad_aperture     = 0.1
+
+.\" Light intensity.
+fill_large_circle = 0.1   # Very bright.
+fill_empty_space  = 0.6   # Little bright.
+fill_light_source = 0     # Completely bright.
+
+arrow_x_shift = 0.05
+txt_y_shift = 0.25   # Allow space for text.
+
+.\" Circles.
+HALO:     circle                   rad rad_large_circle  fill fill_large_circle
+EMPTY:    circle with .c at HALO.c rad rad_empty_space   fill fill_empty_space 
+SOURCE:   circle with .c at HALO.c rad rad_light_source  fill fill_light_source
+APERTURE: circle with .c at HALO.c rad rad_aperture fill fill_light_source dashed
+
+.\" Legend.
+TAPERTURE: "Aperture, where light can pass through" ljust at HALO.e + (0.3, 0)
+TSOURCE:  "Main visible light source, very bright"  ljust at Here + (0, -txt_y_shift)
+TEMPTY:   "Empty space, very little light"          ljust at Here + (0, -txt_y_shift)
+THALO:    "Halo, thin light"                        ljust at Here + (0, -txt_y_shift)
+
+.\" Arrows.
+arrow from TAPERTURE + (-arrow_x_shift,0) to APERTURE chop 0 chop rad_aperture
+arrow from TSOURCE   + (-arrow_x_shift,0) to SOURCE   chop 0 chop rad_light_source
+arrow from TEMPTY    + (-arrow_x_shift,0) to EMPTY    chop 0 chop rad_empty_space
+arrow from THALO     + (-arrow_x_shift,0) to HALO     chop 0 chop rad_large_circle
+
+.\" Let's cheat a little: centering the figure.
+false_line_x = 2.7
+line from SOURCE + (false_line_x,0) to SOURCE + (false_line_x,0)
+
+.ps 14
+"Circular diffraction" at HALO.s + (1, -1)
+.PE
+
+Seriously, just check the source code.
+It's filled with dead simple lines, such as:
+.SOURCE C ps=7 vs=9p
+circle rad rad_large_circle fill fill_large_circle
+.SOURCE
+.gcolor black
+
+.PS
+.vs 9p
+.ps 7
+reset
+
+.\" Drawing direction.
+down
+
+scale = 1.4
+
+
+.\""""""""""""""""""""""""""""""
+.\" Variables to ajust elements.
+
+.\" Distances x and y between the massive object and magnified ones.
+mag_obj_x = 1.4
+mag_obj_y = -1
+
+.\" Radius of the different celestial objects.
+rad_obs         = 0.3
+rad_massive_obj = 0.5
+rad_mag         = 0.4
+rad_dist        = 0.27
+
+.\" Distance between the light beam of the distant object
+.\" reaching the observer and the massive object's center.
+dist_beam_massive_obj = 0.32
+
+
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.\" Drawing of the celestial corpses (planets, galaxies, etc.).
+
+.\" Observer, massive object and the distant object.
+OBSERVER:    circle radius rad_obs "Observer"
+move
+MASSIVE_OBJ: circle radius rad_massive_obj "Massive" "object"
+move
+TARGET:      circle radius rad_dist "Distant" "object"
+
+.\" "radius" can be abreviated in "rad".
+
+.\" Magnified objects.
+MAGNIFIED1: circle rad rad_mag "Magnified" "distant" "object" at MASSIVE_OBJ + ( mag_obj_x, mag_obj_y)
+MAGNIFIED2: circle rad rad_mag "Magnified" "distant" "object" at MASSIVE_OBJ + (-mag_obj_x, mag_obj_y)
+
+.\" Lines from the magnified objects to the observer.
+.\" chop = do not draw within the circles (a radius is given).
+
+line from MAGNIFIED1 to OBSERVER chop rad_mag chop rad_obs dashed
+line from MAGNIFIED2 to OBSERVER chop rad_mag chop rad_obs dashed
+
+.\" Arrows, from distant object to the observer.
+spline -> from TARGET to MASSIVE_OBJ.e + (dist_beam_massive_obj,0)  to OBSERVER chop rad_dist chop rad_obs
+spline -> from TARGET to MASSIVE_OBJ.w + (-dist_beam_massive_obj,0) to OBSERVER chop rad_dist chop rad_obs
+
+.vs
+.ps 14
+"Gravitational lensing" at TARGET + (0,-0.7)
+.PE
+
+Both figures came from my summary of the book
+.B "A Universe From Nothing" "\*[*]"
+from
+.I "Lawrence Krauss" .
+.FOOTNOTE1
+.\" I've no idea why footnotes line length changed.
+.\" This is related to figures, but it needs some investigation.
+.ll 7.5i
+Available at:
+.br
+.ps 7.8
+.ft CW
+\*[WEBSITE]/universe-from-nothing.pdf
+.ft
+.ps
+.FOOTNOTE2
 .NH
 Some graphs with grap.
 .LP
+.PS
+reset
+.PE
 .G1
 GROWTHFACTOR=0.07
 grid bot  dotted from 0 to 100 by 10
