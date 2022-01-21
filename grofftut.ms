@@ -4,7 +4,7 @@
 .so macros.ms   \" First, let's import some macros.
 .so header.ms
 .TWO_COLUMNS
-.NH   \" new section
+.SH   \" new section, without number
 Before we start
 .PP
 .QUESTION "Why a PDF instead of a website?"
